@@ -25,7 +25,6 @@ install(TARGETS app
 install(CODE "
   include(InstallRequiredSystemLibraries)
   include(BundleUtilities)
-  endfunction()
 
   fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/${APP_NAME}.app\" \"\" \"Users/ect/Library/Frameworks\" IGNORE_ITEM \"exe_with_z64;exe_with_zip\")"
   COMPONENT Runtime
