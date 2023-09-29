@@ -40,7 +40,7 @@ jobs:
 
     - name: Python dep
       run: |
-        ./build_python.sh
+        ./build_cpython.sh
         PY_ROOT=`./pythonbuild/bin/python3 -c "import sys, os;print(os.path.abspath(sys.base_prefix))"`
         echo "CMAKE_OPTIONS=-DPython3_ROOT_DIR=$PY_ROOT" >> $GITHUB_ENV
 
