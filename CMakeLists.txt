@@ -18,16 +18,11 @@ target_link_options(app PUBLIC ${Python3_LINK_OPTIONS})
 target_link_libraries(app PUBLIC ${Python3_LIBRARIES})
 set_target_properties(app PROPERTIES OUTPUT_NAME "${APP_NAME}")
 
-install(DIRECTORY /Users/ect/src/cpython/builddir/ DESTINATION ${APP_NAME}.app/Contents/Resources/python
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/pythonbuild/ DESTINATION ${APP_NAME}.app/Contents/Resources/python
     USE_SOURCE_PERMISSIONS
     COMPONENT Runtime
     PATTERN exe_with_* EXCLUDE
 )
-#install(DIRECTORY ${CMAKE_BINARY_DIR}/../Python.framework DESTINATION ${APP_NAME}.app/Contents/Frameworks
-#    USE_SOURCE_PERMISSIONS
-#    COMPONENT Runtime
-#    PATTERN exe_with_* EXCLUDE
-#)
 
 install(TARGETS app
   BUNDLE DESTINATION . COMPONENT Runtime
