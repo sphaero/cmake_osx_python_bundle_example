@@ -5,7 +5,7 @@ project("PythonBundle")
 set(APP_NAME "PyApp")
 
 set(Python3_USE_STATIC_LIBS TRUE)
-find_package (Python3 3.11 EXACT COMPONENTS Development REQUIRED)
+find_package (Python3 3.8 EXACT COMPONENTS Development REQUIRED)
 if(Python3_FOUND)
     message ("python3 found libs: ${Python3_LIBRARIES} incl: ${Python3_INCLUDE_DIRS}")
 else()
