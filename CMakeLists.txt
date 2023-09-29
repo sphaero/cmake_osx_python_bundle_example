@@ -4,7 +4,8 @@ project("PythonBundle")
 
 set(APP_NAME "PyApp")
 
-find_package (Python3 3.9 EXACT COMPONENTS Development REQUIRED)
+set(Python3_USE_STATIC_LIBS TRUE)
+find_package (Python3 3.11 EXACT COMPONENTS Development REQUIRED)
 if(Python3_FOUND)
     message ("python3 found libs: ${Python3_LIBRARIES} incl: ${Python3_INCLUDE_DIRS}")
 else()
@@ -17,6 +18,17 @@ target_link_options(app PUBLIC ${Python3_LINK_OPTIONS})
 target_link_libraries(app PUBLIC ${Python3_LIBRARIES})
 set_target_properties(app PROPERTIES OUTPUT_NAME "${APP_NAME}")
 
+install(DIRECTORY /Users/ect/src/cpython/builddir/ DESTINATION ${APP_NAME}.app/Contents/Resources/python
+    USE_SOURCE_PERMISSIONS
+    COMPONENT Runtime
+    PATTERN exe_with_* EXCLUDE
+)
+#install(DIRECTORY ${CMAKE_BINARY_DIR}/../Python.framework DESTINATION ${APP_NAME}.app/Contents/Frameworks
+#    USE_SOURCE_PERMISSIONS
+#    COMPONENT Runtime
+#    PATTERN exe_with_* EXCLUDE
+#)
+
 install(TARGETS app
   BUNDLE DESTINATION . COMPONENT Runtime
   RUNTIME DESTINATION bin COMPONENT Runtime
@@ -25,8 +37,7 @@ install(TARGETS app
 install(CODE "
   include(InstallRequiredSystemLibraries)
   include(BundleUtilities)
-
-  fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/${APP_NAME}.app\" \"\" \"Users/ect/Library/Frameworks\" IGNORE_ITEM \"exe_with_z64;exe_with_zip\")"
+  fixup_bundle(\"\${CMAKE_INSTALL_PREFIX}/${APP_NAME}.app\" \"\" \"\" IGNORE_ITEM \"Python;exe_with_z64;exe_with_zip\")"
   COMPONENT Runtime
 )
 
