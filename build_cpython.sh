@@ -31,6 +31,7 @@ else
   git clone https://github.com/python/cpython.git --branch=$PY_VER --depth=1
   cd cpython
 fi
+brew remove --ignore-dependencies gettext
 ./configure --with-openssl=$(brew --prefix --installed openssl@1.1) --prefix=$BUILD_DIR --enable-optimizations --enable-shared
 make -s
 make install > /dev/null
