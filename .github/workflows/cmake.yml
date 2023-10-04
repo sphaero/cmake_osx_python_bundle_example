@@ -33,14 +33,14 @@ jobs:
       with:
         submodules: true
 
-    - uses: maxim-lobanov/setup-xcode@v1
-      with:
-        xcode-version: '13.1'
+#    - uses: maxim-lobanov/setup-xcode@v1
+#      with:
+#        xcode-version: '13.1'
 
-    - name: Add brew packages
-      if: ${{ contains( matrix.os, 'macos' ) }}
-      shell: bash
-      run: brew install automake autoconf cmake
+#    - name: Add brew packages
+#      if: ${{ contains( matrix.os, 'macos' ) }}
+#      shell: bash
+#      run: brew install automake autoconf cmake
 
     - name: Python dep
       run: |

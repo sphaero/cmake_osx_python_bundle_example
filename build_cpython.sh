@@ -32,6 +32,6 @@ else
   cd cpython
 fi
 brew remove --ignore-dependencies gettext
-./configure --with-openssl=$(brew --prefix --installed openssl@1.1) --prefix=$BUILD_DIR --enable-optimizations --enable-shared
+./configure --with-openssl=$(brew --prefix --installed openssl@1.1) --prefix=$BUILD_DIR --enable-optimizations
 make -s
 make install > /dev/null
